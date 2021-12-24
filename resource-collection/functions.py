@@ -16,19 +16,20 @@ def login(email: str, password: str, drv: any):
     password_form.send_keys(c.PASSWORD)
     password_form.send_keys(Keys.RETURN)
 
+def img_found(img_path: object, drv: any):
+    img_check = GraphicalLocator(img_path)
+    img_check.find_me(drv)
+
+    return (img_check.threshold['shape'] >= 0.8 and
+            img_check.threshold['histogram'] >= 0.4)
+
 def search_for_img(img_path: object, drv: any):
     img_check = GraphicalLocator(img_path)
     img_check.find_me(drv)
 
-    is_found = True if img_check.threshold['shape'] >= 0.8 and \
-                    img_check.threshold['histogram'] >= 0.4 else False
-
     canvas = drv.find_element_by_id(c.CANVAS_ID)
     actions = ActionChains(drv)
 
-    if (is_found):
-        actions.move_to_element_with_offset(canvas, img_check.center_x / 2, img_check.center_y / 2)
-        actions.click()
-        actions.perform()
-    else:
-        print("Object not found!")
+    actions.move_to_element_with_offset(canvas, img_check.center_x / 2, img_check.center_y / 2)
+    actions.click()
+    actions.perform()

@@ -67,7 +67,7 @@ class GraphicalLocator(object):
         # Save treshold matches of: graphical image and image histogram
         self.threshold = {'shape': round(img_match[1], 2),'histogram': round(comp_hist, 2)}
 
-        #cv2.imshow("with rect", cv2.rectangle(scr, (self.x, self.y), 
+        #v2.imshow("with rect", cv2.rectangle(scr, (self.x, self.y), 
                              #(self.x + self.width, self.y + self.height),
                              #(0, 0, 255), 2))
         #cv2.waitKey(20000)
