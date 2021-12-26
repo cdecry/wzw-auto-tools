@@ -23,7 +23,20 @@ def img_found(img_path: object, drv: any):
     return (img_check.threshold['shape'] >= 0.8 and
             img_check.threshold['histogram'] >= 0.4)
 
-def search_for_img(img_path: object, drv: any):
+def drag_img(img_path: object, drv: any, offset_x: int, offset_y: int):
+    img_check = GraphicalLocator(img_path)
+    img_check.find_me(drv)
+
+    canvas = drv.find_element_by_id(c.CANVAS_ID)
+    actions = ActionChains(drv)
+
+    actions.move_to_element_with_offset(canvas, img_check.center_x / 2, img_check.center_y / 2)
+    actions.click_and_hold()
+    actions.move_by_offset(offset_x, offset_y)
+    actions.release()
+    actions.perform()
+
+def click_img(img_path: object, drv: any):
     img_check = GraphicalLocator(img_path)
     img_check.find_me(drv)
 

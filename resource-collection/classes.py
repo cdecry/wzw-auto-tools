@@ -72,8 +72,6 @@ class GraphicalLocator(object):
                              #(0, 0, 255), 2))
         #cv2.waitKey(20000)
 
-        print("Top left of found: " + str(self.x) + ", " + str(self.y))
-
         # Return image with blue rectangle around match
         return cv2.rectangle(scr, (self.x, self.y), 
                              (self.x + self.width, self.y + self.height),
